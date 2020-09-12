@@ -57,4 +57,14 @@ app.get('/top_playlists', (req, res) => {
     });
 });
 
+app.get('/song/:id', async (req, res) =>{
+    mysqlCon.query('SELECT * FROM songs WHERE song_id = ?',[req.params.id], (error, results, fields) => {
+        if (error) {
+            res.send(err.message);
+            throw error;
+        };
+        res.send(results);
+      });
+});
+
 app.listen(3001);
