@@ -58,7 +58,7 @@ app.get('/top_playlists', (req, res) => {
 });
 
 app.get('/song/:id', async (req, res) => {
-    mysqlCon.query('SELECT * FROM songs WHERE song_id = ?', [req.params.id], (error, results, fields) => {
+    mysqlCon.query('SELECT * FROM songs WHERE song_id = ?', req.params.id, (error, results, fields) => {
         if (error) {
             res.send(error.message);
             throw error;
@@ -68,7 +68,7 @@ app.get('/song/:id', async (req, res) => {
 });
 
 app.get('/artist/:id', async (req, res) => {
-    mysqlCon.query('SELECT * FROM artists WHERE artist_id = ?', [req.params.id], (error, results, fields) => {
+    mysqlCon.query('SELECT * FROM artists WHERE artist_id = ?', req.params.id, (error, results, fields) => {
         if (error) {
             res.send(error.message);
             throw error;
@@ -78,7 +78,7 @@ app.get('/artist/:id', async (req, res) => {
 });
 
 app.get('/album/:id', async (req, res) => {
-    mysqlCon.query('SELECT * FROM albums WHERE artist_id = ?', [req.params.id], (error, results, fields) => {
+    mysqlCon.query('SELECT * FROM albums WHERE artist_id = ?', req.params.id, (error, results, fields) => {
         if (error) {
             res.send(error.message);
             throw error;
@@ -88,7 +88,7 @@ app.get('/album/:id', async (req, res) => {
 });
 
 app.get('/playlist/:id', async (req, res) => {
-    mysqlCon.query('SELECT * FROM playlists WHERE artist_id = ?', [req.params.id], (error, results, fields) => {
+    mysqlCon.query('SELECT * FROM playlists WHERE artist_id = ?', req.params.id, (error, results, fields) => {
         if (error) {
             res.send(error.message);
             throw error;
@@ -96,5 +96,16 @@ app.get('/playlist/:id', async (req, res) => {
         res.send(results);
     });
 });
+
+app.post('/song', async (req, res) =>{
+    mysqlCon.query('INSERT INTO songs SET ?',req.body, (error, results, fields) => {
+        if (error) {
+            res.send(error.message);
+            throw error;
+        };
+        res.send(results);
+    });
+});
+
 
 app.listen(3001);
