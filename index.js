@@ -27,4 +27,34 @@ app.get('/top_songs', (req, res) => {
     });
 });
 
+app.get('/top_artists', (req, res) => {
+    mysqlCon.query('SELECT * FROM artists LIMIT 20;', (error, results, fields) => {
+        if (error) {
+            res.send(err.message);
+            throw error;
+        };
+        res.send(results);
+    });
+});
+
+app.get('/top_albums', (req, res) => {
+    mysqlCon.query('SELECT * FROM albums LIMIT 20;', (error, results, fields) => {
+        if (error) {
+            res.send(err.message);
+            throw error;
+        };
+        res.send(results);
+    });
+});
+
+app.get('/top_playlists', (req, res) => {
+    mysqlCon.query('SELECT * FROM playlists LIMIT 20;', (error, results, fields) => {
+        if (error) {
+            res.send(err.message);
+            throw error;
+        };
+        res.send(results);
+    });
+});
+
 app.listen(3001);
