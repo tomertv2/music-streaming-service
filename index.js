@@ -182,4 +182,15 @@ app.put('/playlist/:id', async (req, res) => {
     });
 });
 
+app.delete('/song/:id', async (req, res) => {
+    mysqlCon.query('DELETE FROM songs WHERE song_id = ?', req.params.id, (error, results, fields) => {
+        if (error) {
+            res.send(error.message);
+            throw error;
+        };
+        res.send(results);
+    });
+});
+
+
 app.listen(3001);
