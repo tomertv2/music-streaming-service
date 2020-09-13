@@ -78,7 +78,7 @@ app.get('/artist/:id', async (req, res) => {
 });
 
 app.get('/album/:id', async (req, res) => {
-    mysqlCon.query('SELECT * FROM albums WHERE artist_id = ?', req.params.id, (error, results, fields) => {
+    mysqlCon.query('SELECT * FROM albums WHERE album_id = ?', req.params.id, (error, results, fields) => {
         if (error) {
             res.send(error.message);
             throw error;
@@ -88,7 +88,7 @@ app.get('/album/:id', async (req, res) => {
 });
 
 app.get('/playlist/:id', async (req, res) => {
-    mysqlCon.query('SELECT * FROM playlists WHERE artist_id = ?', req.params.id, (error, results, fields) => {
+    mysqlCon.query('SELECT * FROM playlists WHERE playlist_id = ?', req.params.id, (error, results, fields) => {
         if (error) {
             res.send(error.message);
             throw error;
@@ -152,6 +152,17 @@ app.put('/song/:id', async (req, res) => {
 app.put('/artist/:id', async (req, res) => {
     mysqlCon.query('UPDATE artists SET artist_name = ?, cover_img = ?, upload_at = ? WHERE artist_id = ?', 
     [req.body.artist_name, req.body.cover_img, req.body.upload_at, req.params.id], (error, results, fields) => {
+        if (error) {
+            res.send(error);
+            throw error;
+        }
+        res.send(results);
+    });
+});
+
+app.put('/album/:id', async (req, res) => {
+    mysqlCon.query('UPDATE albums SET album_name = ?, cover_img = ?, created_at = ?, upload_at = ?, artist_id = ? WHERE album_id = ?', 
+    [req.body.album_name, req.body.cover_img, req.body.created_at, req.body.upload_at, req.body.artist_id, req.params.id], (error, results, fields) => {
         if (error) {
             res.send(error);
             throw error;
