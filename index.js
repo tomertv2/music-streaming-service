@@ -192,5 +192,34 @@ app.delete('/song/:id', async (req, res) => {
     });
 });
 
+app.delete('/artist/:id', async (req, res) => {
+    mysqlCon.query('DELETE FROM artists WHERE artist_id = ?', req.params.id, (error, results, fields) => {
+        if (error) {
+            res.send(error.message);
+            throw error;
+        };
+        res.send(results);
+    });
+});
+
+app.delete('/album/:id', async (req, res) => {
+    mysqlCon.query('DELETE FROM albums WHERE album_id = ?', req.params.id, (error, results, fields) => {
+        if (error) {
+            res.send(error.message);
+            throw error;
+        };
+        res.send(results);
+    });
+});
+
+app.delete('/playlist/:id', async (req, res) => {
+    mysqlCon.query('DELETE FROM playlists WHERE playlist_id = ?', req.params.id, (error, results, fields) => {
+        if (error) {
+            res.send(error.message);
+            throw error;
+        };
+        res.send(results);
+    });
+});
 
 app.listen(3001);
