@@ -97,8 +97,8 @@ app.get('/playlist/:id', async (req, res) => {
     });
 });
 
-app.post('/song', async (req, res) =>{
-    mysqlCon.query('INSERT INTO songs SET ?',req.body, (error, results, fields) => {
+app.post('/song', async (req, res) => {
+    mysqlCon.query('INSERT INTO songs SET ?', req.body, (error, results, fields) => {
         if (error) {
             res.send(error.message);
             throw error;
@@ -107,8 +107,8 @@ app.post('/song', async (req, res) =>{
     });
 });
 
-app.post('/album', async (req, res) =>{
-    mysqlCon.query('INSERT INTO albums SET ?',req.body, (error, results, fields) => {
+app.post('/album', async (req, res) => {
+    mysqlCon.query('INSERT INTO albums SET ?', req.body, (error, results, fields) => {
         if (error) {
             res.send(error.message);
             throw error;
@@ -117,8 +117,8 @@ app.post('/album', async (req, res) =>{
     });
 });
 
-app.post('/playlist', async (req, res) =>{
-    mysqlCon.query('INSERT INTO playlists SET ?',req.body, (error, results, fields) => {
+app.post('/playlist', async (req, res) => {
+    mysqlCon.query('INSERT INTO playlists SET ?', req.body, (error, results, fields) => {
         if (error) {
             res.send(error.message);
             throw error;
@@ -127,12 +127,24 @@ app.post('/playlist', async (req, res) =>{
     });
 });
 
-app.post('/artist', async (req, res) =>{
-    mysqlCon.query('INSERT INTO artists SET ?',req.body, (error, results, fields) => {
+app.post('/artist', async (req, res) => {
+    mysqlCon.query('INSERT INTO artists SET ?', req.body, (error, results, fields) => {
         if (error) {
             res.send(error.message);
             throw error;
         };
+        res.send(results);
+    });
+});
+
+app.put('/song/:id', async (req, res) => {
+    mysqlCon.query('UPDATE songs SET title = ?, length = ?, youtube_link = ?, track_number = ?, lyrics = ?, created_at = ?, upload_at = ?, album_id = ?, artist_id = ? WHERE song_id = ?', 
+    [req.body.title, req.body.length, req.body.youtube_link, req.body.track_number, req.body.lyrics, 
+    req.body.created_at, req.body.upload_at, req.body.album_id, req.body.artist_id, req.params.id], (error, results, fields) => {
+        if (error) {
+            res.send(error);
+            throw error;
+        }
         res.send(results);
     });
 });
