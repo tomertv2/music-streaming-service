@@ -171,4 +171,15 @@ app.put('/album/:id', async (req, res) => {
     });
 });
 
+app.put('/playlist/:id', async (req, res) => {
+    mysqlCon.query('UPDATE playlists SET playlist_name = ?, cover_img = ?, created_at = ?, upload_at = ? WHERE playlist_id = ?', 
+    [req.body.playlist_name, req.body.cover_img, req.body.created_at, req.body.upload_at, req.params.id], (error, results, fields) => {
+        if (error) {
+            res.send(error);
+            throw error;
+        }
+        res.send(results);
+    });
+});
+
 app.listen(3001);
