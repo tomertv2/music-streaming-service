@@ -19,9 +19,9 @@ function App() {
         </ul>
         <Switch>
             <Route exact path='/' component={Home} />
-            <Route path='/song' component={Song} />
-            <Route path='/album' component={Album} />
-            <Route path='/Playlist' component={Playlist} />
+            <Route path='/song/:id' component={Song} />
+            <Route path='/album/:id' component={Album} />
+            <Route path='/Playlist/:id' component={Playlist} />
         </Switch>
       </div>
     </Router>
