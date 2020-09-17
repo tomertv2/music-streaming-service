@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import Carousel from 'react-elastic-carousel';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function Home() {
     const [topSongs, setTopSongs] = useState([]);
@@ -44,11 +45,15 @@ function Home() {
     <div>
         <h2>Top 20 Songs:</h2>
         <Carousel itemsToShow={4}>
-            {topSongs.map(song => <div>{song.title}</div>)}
+            {topSongs.map(song => 
+              <div>{song.title}</div>
+            )}
         </Carousel>
         <h2>Top 20 Artists:</h2>
         <Carousel itemsToShow={4}>
-            {topArtists.map(artist => <div>{artist.artist_name}</div>)}
+            {topArtists.map(artist => 
+              <div><Link to={`/Artist/${artist.artist_id}`}>{artist.artist_name}</Link></div>
+            )}
         </Carousel>
         <h2>Top 20 Albums:</h2>
         <Carousel itemsToShow={4}>
