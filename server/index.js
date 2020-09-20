@@ -232,4 +232,24 @@ app.get('/albumsByArtist/:id', async (req, res) => {
     });
 });
 
+app.get('/songsFromAlbum/:id', async (req, res) => {
+    mysqlCon.query('SELECT * FROM songs WHERE album_id = ?', req.params.id, (error, results, fields) => {
+        if (error) {
+            res.send(error.message);
+            throw error;
+        }
+        res.send(results);
+    });
+});
+
+app.get('/artistByAlbum/:id', async (req, res) => {
+    mysqlCon.query('SELECT artist_name FROM artists WHERE artist_id = ?', req.params.id, (error, results, fields) => {
+        if (error) {
+            res.send(error.message);
+            throw error;
+        }
+        res.send(results);
+    });
+});
+
 app.listen(3001);

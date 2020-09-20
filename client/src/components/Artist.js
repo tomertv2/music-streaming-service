@@ -16,8 +16,7 @@ function Artist() {
         setAlbumsByArtist(albums);
     }
     fetchedData();
-}, [params])
-console.log(albumsByArtist);
+}, [params]);
   
   return (
     <div>
@@ -27,7 +26,9 @@ console.log(albumsByArtist);
             <img src={artist.cover_img} alt={artist.artist_name} width='300' height='300' />
             <Carousel>
                 {albumsByArtist.map(album => 
-                    <div>
+                    <div key={album.album_id}>
+                        <img src={album.cover_img} alt={album.album_name} width='150' height='150' />
+                        <br />
                         <Link to={`/album/${album.album_id}`}>{album.album_name}</Link>
                     </div>
                 )}
