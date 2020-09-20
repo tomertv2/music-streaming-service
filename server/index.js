@@ -222,4 +222,14 @@ app.delete('/playlist/:id', async (req, res) => {
     });
 });
 
+app.get('/albumsByArtist/:id', async (req, res) => {
+    mysqlCon.query('SELECT * FROM albums WHERE artist_id = ? ORDER BY album_id', req.params.id, (error, results, fields) => {
+        if (error) {
+            res.send(error.message);
+            throw error;
+        }
+        res.send(results);
+    });
+});
+
 app.listen(3001);
