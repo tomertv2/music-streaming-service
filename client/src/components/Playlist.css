@@ -1,0 +1,22 @@
+.playlist-data-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.playlist-header {
+    font-size: 70px;
+    display: flex;
+    justify-content: center;
+}
+
+.playlist-photo-time {
+    display: flex;
+    flex-direction: column;
+}
+
+.song-list {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10vw;
+}
