@@ -270,10 +270,12 @@ app.get('/songsFromAlbum/:id', async (req, res) => {
 });
 
 app.get('/songsByArtist/:id', async (req, res) => {
-    mysqlCon.query(`SELECT songs.*, artists.artist_name
+    mysqlCon.query(`SELECT songs.*, artists.artist_name, albums.cover_img
                     FROM songs 
                     INNER JOIN artists 
                     ON artists.artist_id = songs.artist_id 
+                    INNER JOIN albums 
+                    ON albums.album_id = songs.album_id 
                     WHERE songs.artist_id = ?`, req.params.id, (error, results, fields) => {
         if (error) {
             res.send(error.message);
