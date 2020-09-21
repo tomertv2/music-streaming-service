@@ -18,7 +18,12 @@ mysqlCon.connect(err => {
 });
 
 app.get('/top_songs', (req, res) => {
-    mysqlCon.query('SELECT * FROM songs LIMIT 20;', (error, results, fields) => {
+    mysqlCon.query(`SELECT songs.*, albums.cover_img 
+                    FROM songs
+                    INNER JOIN albums
+                    ON songs.album_id = albums.album_id
+                    ORDER BY youtube_link 
+                    LIMIT 20;`, (error, results, fields) => {
         if (error) {
             res.send(error.message);
             throw error;
