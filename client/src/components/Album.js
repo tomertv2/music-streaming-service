@@ -5,7 +5,6 @@ import axios from 'axios';
 function Album() {
   const [album, setAlbum] = useState({});
   const [songsInAlbum, setSongsInAlbum] = useState([]);
-  const [artistName, setArtistName] = useState('')
   const params = useParams();
 
   useEffect(() => {
@@ -17,21 +16,13 @@ function Album() {
     }
     fetchedData();
   }, [params]);
-  
-  useEffect(() => {
-    const fetchedData = async () => {
-      const { data } = await axios.get(`/artistByAlbum/${album.artist_id}`);
-      setArtistName(data[0]);
-    }
-    fetchedData();
-  }, [album]);
 
   return (
     <div>
-        {album && songsInAlbum && artistName ? 
+        {album && songsInAlbum ? 
         <div className="album-container">
             <h3>{album.album_name}</h3>
-            <h4>{artistName.artist_name}</h4>
+            <h4>{album.artist_name}</h4>
             <img src={album.cover_img} alt={album.album_name} width='300' height='300' />
             <div>
             {songsInAlbum.map(song => 
