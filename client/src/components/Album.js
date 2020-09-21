@@ -27,7 +27,7 @@ function Album() {
             <div>
             {songsInAlbum.map(song => 
               <div key={song.song_id} className="song-in-list">
-                <Link to={`/song/${song.song_id}`}>{song.title}</Link> | {song.length}
+                <Link to={`/song/${song.song_id}?album=${params.id}`}>{song.title}</Link> | {song.length}
               </div>  
             )}
             </div>

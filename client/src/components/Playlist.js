@@ -25,8 +25,8 @@ function Playlist() {
             <img src={playlist[0].cover_img} alt={playlist[0].playlist_name} width='300' height='300' />
             {playlist.map(song => 
               <div key={song.songs_in_playlists_id}>
-                {song.title} | {song.artist_name} | {song.length}
-              </div>  
+                <Link to={`/song/${song.song_id}?playlist=${params.id}`}>{song.title}</Link> | {song.artist_name} | {song.length}
+              </div>
             )}
         </div> :
         <div>no playlist found</div>}

@@ -58,7 +58,13 @@ app.get('/top_playlists', (req, res) => {
 });
 
 app.get('/song/:id', async (req, res) => {
-    mysqlCon.query('SELECT * FROM songs WHERE song_id = ?', req.params.id, (error, results, fields) => {
+    mysqlCon.query(`SELECT *, artists.artist_name, albums.album_name
+                    FROM songs 
+                    INNER JOIN artists
+                    ON songs.artist_id = artists.artist_id
+                    INNER JOIN albums
+                    ON songs.album_id = albums.album_id
+                    WHERE song_id = ?`, req.params.id, (error, results, fields) => {
         if (error) {
             res.send(error.message);
             throw error;
@@ -92,7 +98,7 @@ app.get('/album/:id', async (req, res) => {
 });
 
 app.get('/playlist/:id', async (req, res) => {
-    mysqlCon.query(`SELECT playlists.*, songs_in_playlists.*, songs.title, songs.length, artists.artist_name
+    mysqlCon.query(`SELECT playlists.*, songs_in_playlists.*, songs.title, songs.length, songs.lyrics, artists.artist_name
                     FROM playlists
                     JOIN songs_in_playlists
                     ON playlists.playlist_id = songs_in_playlists.playlist_id
@@ -245,7 +251,25 @@ app.get('/albumsByArtist/:id', async (req, res) => {
 });
 
 app.get('/songsFromAlbum/:id', async (req, res) => {
-    mysqlCon.query('SELECT * FROM songs WHERE album_id = ?', req.params.id, (error, results, fields) => {
+    mysqlCon.query(`SELECT songs.*, artists.artist_name
+                    FROM songs 
+                    INNER JOIN artists 
+                    ON artists.artist_id = songs.artist_id
+                    WHERE album_id = ?`, req.params.id, (error, results, fields) => {
+        if (error) {
+            res.send(error.message);
+            throw error;
+        }
+        res.send(results);
+    });
+});
+
+app.get('/songsByArtist/:id', async (req, res) => {
+    mysqlCon.query(`SELECT songs.*, artists.artist_name
+                    FROM songs 
+                    INNER JOIN artists 
+                    ON artists.artist_id = songs.artist_id 
+                    WHERE songs.artist_id = ?`, req.params.id, (error, results, fields) => {
         if (error) {
             res.send(error.message);
             throw error;

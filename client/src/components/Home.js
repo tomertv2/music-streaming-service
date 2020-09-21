@@ -46,7 +46,9 @@ function Home() {
         <h2>Top 20 Songs:</h2>
         <Carousel itemsToShow={4}>
             {topSongs.map(song => 
-              <div key={song.song_id}>{song.title}</div>
+              <div key={song.song_id}>
+                <Link to={`/song/${song.song_id}?album=${song.album_id}`}>{song.title}</Link>
+              </div>
             )}
         </Carousel>
         <h2>Top 20 Artists:</h2>
