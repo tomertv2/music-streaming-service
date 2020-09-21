@@ -32,7 +32,7 @@ function Album() {
             )}
             </div>
         </div> :
-        <div>no artist found</div>}
+        <div>no album found</div>}
     </div>
   );
 }

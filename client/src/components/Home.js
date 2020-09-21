@@ -53,7 +53,7 @@ function Home() {
         <Carousel itemsToShow={4}>
             {topArtists.map(artist => 
               <div key={artist.artist_id}>
-                <div><Link to={`/artist/${artist.artist_id}`}>{artist.artist_name}</Link></div>
+                <Link to={`/artist/${artist.artist_id}`}>{artist.artist_name}</Link>
               </div>
             )}
         </Carousel>
@@ -61,14 +61,16 @@ function Home() {
         <Carousel itemsToShow={4}>
             {topAlbums.map(album => 
               <div key={album.album_id}>
-                <div><Link to={`/album/${album.album_id}`}>{album.album_name}</Link></div>
+                <Link to={`/album/${album.album_id}`}>{album.album_name}</Link>
               </div>
             )}
         </Carousel>
         <h2>Top 20 Playlists:</h2>
         <Carousel itemsToShow={4}>
             {topPlaylists.map(playlist => 
-              <div key={playlist.playlist_id}>{playlist.playlist_name}</div>
+              <div key={playlist.playlist_id}>
+                <Link to={`/playlist/${playlist.playlist_id}`}>{playlist.playlist_name}</Link>
+              </div>
             )}
         </Carousel>
     </div>

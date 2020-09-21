@@ -78,7 +78,11 @@ app.get('/artist/:id', async (req, res) => {
 });
 
 app.get('/album/:id', async (req, res) => {
-    mysqlCon.query('SELECT albums.*, artists.artist_name FROM albums INNER JOIN artists ON albums.artist_id = artists.artist_id WHERE album_id = ?', req.params.id, (error, results, fields) => {
+    mysqlCon.query(`SELECT albums.*, artists.artist_name 
+                    FROM albums 
+                    INNER JOIN artists 
+                    ON albums.artist_id = artists.artist_id 
+                    WHERE album_id = ?`, req.params.id, (error, results, fields) => {
         if (error) {
             res.send(error.message);
             throw error;
@@ -88,7 +92,15 @@ app.get('/album/:id', async (req, res) => {
 });
 
 app.get('/playlist/:id', async (req, res) => {
-    mysqlCon.query('SELECT * FROM playlists WHERE playlist_id = ?', req.params.id, (error, results, fields) => {
+    mysqlCon.query(`SELECT playlists.*, songs_in_playlists.*, songs.title, songs.length, artists.artist_name
+                    FROM playlists
+                    JOIN songs_in_playlists
+                    ON playlists.playlist_id = songs_in_playlists.playlist_id
+                    JOIN songs
+                    ON songs.song_id = songs_in_playlists.song_id
+                    INNER JOIN artists
+                    ON songs.artist_id = artists.artist_id
+                    WHERE playlists.playlist_id = ?`, req.params.id, (error, results, fields) => {
         if (error) {
             res.send(error.message);
             throw error;
