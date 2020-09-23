@@ -47,7 +47,7 @@ function Artist() {
                             <div key={song.song_id} className="cube-in-carousel">
                                 <img src={song.cover_img} alt={song.title} width='150' height='150' />
                                 <br />
-                                <Link to={`/song/${song.song_id}/?artist=${artist.artist_id}`}>{song.title}</Link>
+                                <Link to={`/song/${song.song_id}?artist=${artist.artist_id}`}>{song.title}</Link>
                             </div>
                         )}
                     </Carousel>
