@@ -1,22 +1,22 @@
 {
   "development": {
     "username": "root",
-    "password": "tomer321",
-    "database": "database_development",
+    "password": "tomer123",
+    "database": "sql_spotify",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "tomer321",
-    "database": "database_test",
+    "password": "tomer123",
+    "database": "sql_spotify_test",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
-    "password": "tomer321",
-    "database": "database_production",
+    "password": "tomer123",
+    "database": "sql_spotify_production",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }
