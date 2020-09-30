@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Artist, {
         foreignKey: 'artistId'
       });
+      this.belongsTo(models.Album, {
+        foreignKey: 'albumId'
+      });
     }
   }
   Song.init(

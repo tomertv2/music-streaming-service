@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
   const allSongs = await Song.findAll({
     include: Artist,
   });
-  res.send(allSongs);
+  res.json(allSongs);
 });
 
 module.exports = router;
