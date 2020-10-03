@@ -10,32 +10,42 @@ function Album() {
 
   useEffect(() => {
     const fetchedData = async () => {
-      const { data } = await axios.get(`/album/${params.id}`);
-      setAlbum(data[0]);
-      const songs = await (await axios.get(`/songsFromAlbum/${params.id}`)).data;
-      setSongsInAlbum(songs);
-    }
+      const { data } = await axios.get(`/api/album/${params.id}`);
+      setAlbum(data);
+      console.log(data);
+      setSongsInAlbum(data.Songs);
+    };
     fetchedData();
   }, [params]);
 
   return (
     <div>
-        {album && songsInAlbum ? 
-        <div className="album-container">
-            <h3 className="album-header">{album.album_name}</h3>
-            <h4 className="art-header">By {album.artist_name}</h4>
-            <div className="album-data-container">
-              <img src={album.cover_img} alt={album.album_name} width='300' height='300' />
-              <div className="song-list">
-                {songsInAlbum.map(song => 
-                  <div key={song.song_id}>
-                    <Link to={`/song/${song.song_id}?album=${params.id}`}>{song.title}</Link> | {song.length}
-                  </div>  
-                )}
-              </div>
+      {album && songsInAlbum ? (
+        <div className='album-container'>
+          <h3 className='album-header'>{album.albumName}</h3>
+          <h4 className='art-header'>By {album.artistName}</h4>
+          <div className='album-data-container'>
+            <img
+              src={album.coverImg}
+              alt={album.albumName}
+              width='300'
+              height='300'
+            />
+            <div className='song-list'>
+              {songsInAlbum.map((song) => (
+                <div key={song.id}>
+                  <Link to={`/song/${song.songId}?album=${params.id}`}>
+                    {song.title}
+                  </Link>{' '}
+                  | {song.length}
+                </div>
+              ))}
             </div>
-        </div> :
-        <div>no album found</div>}
+          </div>
+        </div>
+      ) : (
+        <div>no album found</div>
+      )}
     </div>
   );
 }

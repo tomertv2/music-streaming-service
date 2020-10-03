@@ -20,10 +20,6 @@ function Artist() {
     fetchedData();
   }, [params]);
 
-  console.log(albumsByArtist);
-  console.log(artist);
-  console.log(songsByArtist);
-
   return (
     <div>
       {artist && albumsByArtist && songsByArtist ? (
@@ -42,7 +38,7 @@ function Artist() {
               </div>
               <Carousel itemsToShow={1}>
                 {albumsByArtist.map((album) => (
-                  <div key={album.albumId} className='cube-in-carousel'>
+                  <div key={album.id} className='cube-in-carousel'>
                     <img
                       src={album.coverImg}
                       alt={album.albumName}
@@ -50,7 +46,7 @@ function Artist() {
                       height='150'
                     />
                     <br />
-                    <Link to={`/album/${album.albumId}`}>
+                    <Link to={`/album/${album.id}`}>
                       {album.albumName}
                     </Link>
                   </div>
@@ -62,7 +58,7 @@ function Artist() {
               </div>
               <Carousel itemsToShow={3}>
                 {songsByArtist.map((song) => (
-                  <div key={song.songId} className='cube-in-carousel'>
+                  <div key={song.id} className='cube-in-carousel'>
                     <img
                       src={artist.coverImg}
                       alt={song.title}
@@ -70,7 +66,7 @@ function Artist() {
                       height='150'
                     />
                     <br />
-                    <Link to={`/song/${song.songId}/?artist=${artist.artistId}`}>{song.title}</Link>
+                    <Link to={`/song/${song.id}/?artist=${artist.id}`}>{song.title}</Link>
                   </div>
                 ))}
               </Carousel>
