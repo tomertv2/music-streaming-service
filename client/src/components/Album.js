@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
+import network from '../services/network';
 import './Album.css';
 
 function Album() {
@@ -10,7 +10,7 @@ function Album() {
 
   useEffect(() => {
     const fetchedData = async () => {
-      const { data } = await axios.get(`/api/album/${params.id}`);
+      const { data } = await network.get(`/api/album/${params.id}`);
       setAlbum(data);
       console.log(data);
       setSongsInAlbum(data.Songs);

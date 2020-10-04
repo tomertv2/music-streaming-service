@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Carousel from 'react-elastic-carousel';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import network from '../services/network';
 import './Home.css';
 
 function Home() {
@@ -12,7 +12,7 @@ function Home() {
 
     useEffect(() => {
         const fetchedData = async () => {
-          const { data } = await axios.get('/top_songs');
+          const { data } = await network.get('/top_songs');
           setTopSongs(data);
         };
         fetchedData();
@@ -20,7 +20,7 @@ function Home() {
 
     useEffect(() => {
         const fetchedData = async () => {
-          const { data } = await axios.get('/top_artists');
+          const { data } = await network.get('/top_artists');
           setTopArtists(data);
         };
         fetchedData();
@@ -28,7 +28,7 @@ function Home() {
 
     useEffect(() => {
         const fetchedData = async () => {
-          const { data } = await axios.get('/top_albums');
+          const { data } = await network.get('/api/album');
           setTopAlbums(data);
         };
         fetchedData();
@@ -36,7 +36,7 @@ function Home() {
 
     useEffect(() => {
         const fetchedData = async () => {
-          const { data } = await axios.get('/top_playlists');
+          const { data } = await network.get('/top_playlists');
           setTopPlaylists(data);
         };
         fetchedData();
