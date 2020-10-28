@@ -27,7 +27,7 @@ function Song() {
       }
     };
     fetchedData();
-  }, [location]);
+  }, []);
 
   useEffect(() => {
     const fetchedData = async () => {
@@ -35,7 +35,7 @@ function Song() {
       setSongData(data);
     };
     fetchedData();
-  }, []);
+  }, [location]);
 
   return (
     <div>
