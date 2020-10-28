@@ -9,7 +9,7 @@ export default function Error404() {
         setTimeout(() => {
             history.push('/');
         }, 2000);
-    }, []);
+    }, [history]);
     
     return (
         <div className="error-container">
