@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Carousel from 'react-elastic-carousel';
-import axios from 'axios';
+import network from '../services/network';
 import './Artist.css';
 
 function Artist() {
@@ -12,13 +12,15 @@ function Artist() {
 
   useEffect(() => {
     const fetchedData = async () => {
-      const { data } = await axios.get(`/api/artist/${params.id}`);
+      const { data } = await network.get(`/api/artist/${params.id}`);
       setArtist(data.artist);
       setAlbumsByArtist(data.artist.Albums);
       setSongsByArtist(data.songsByArtist.Songs);
     };
     fetchedData();
   }, [params]);
+
+  console.log(songsByArtist)
 
   return (
     <div>
@@ -46,9 +48,7 @@ function Artist() {
                       height='150'
                     />
                     <br />
-                    <Link to={`/album/${album.id}`}>
-                      {album.albumName}
-                    </Link>
+                    <Link to={`/album/${album.id}`}>{album.albumName}</Link>
                   </div>
                 ))}
               </Carousel>
@@ -66,7 +66,9 @@ function Artist() {
                       height='150'
                     />
                     <br />
-                    <Link to={`/song/${song.id}/?artist=${artist.id}`}>{song.title}</Link>
+                    <Link to={`/song/${song.id}/?artist=${artist.id}`}>
+                      {song.title}
+                    </Link>
                   </div>
                 ))}
               </Carousel>
