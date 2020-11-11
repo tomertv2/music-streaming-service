@@ -1,0 +1,31 @@
+.not-lyrics {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10vw;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.song-list-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10vw;
+}
+
+.lyrics {
+    margin-top: 20px;
+    max-width: 50vw;
+}
+
+.song-header {
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.mini-header {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+}

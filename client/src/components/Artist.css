@@ -1,0 +1,26 @@
+.artist-header {
+    font-size: 70px;
+    display: flex;
+    justify-content: center;
+}
+
+.artist-data-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.artist-carousels {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-left: 10px;
+}
+
+.artist-carousels-header {
+    margin-left: 2vw;
+    margin-bottom: 15px;
+}

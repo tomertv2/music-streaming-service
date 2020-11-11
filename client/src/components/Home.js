@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import Carousel from 'react-elastic-carousel';
+import { Link } from 'react-router-dom';
+import network from '../services/network';
+import './Home.css';
 
 function Home() {
     const [topSongs, setTopSongs] = useState([]);
@@ -10,54 +12,74 @@ function Home() {
 
     useEffect(() => {
         const fetchedData = async () => {
-          const { data } = await axios.get('/top_songs');
-          setTopSongs(data);
-        };
-        fetchedData();
-    }, []);
-
-    useEffect(() => {
-        const fetchedData = async () => {
-          const { data } = await axios.get('/top_artists');
-          setTopArtists(data);
-        };
-        fetchedData();
-    }, []);
-
-    useEffect(() => {
-        const fetchedData = async () => {
-          const { data } = await axios.get('/top_albums');
-          setTopAlbums(data);
-        };
-        fetchedData();
-    }, []);
-
-    useEffect(() => {
-        const fetchedData = async () => {
-          const { data } = await axios.get('/top_playlists');
-          setTopPlaylists(data);
+          const { data: songs } = await network.get('/api/song');
+          setTopSongs(songs);
+          console.log(songs)
+          const { data: artists } = await network.get('/api/artist');
+          setTopArtists(artists);
+          const { data: albums } = await network.get('/api/album');
+          setTopAlbums(albums);
+          console.log(albums)
+          const { data: playlists } = await network.get('/api/playlist');
+          setTopPlaylists(playlists);
         };
         fetchedData();
     }, []);
 
     return (
     <div>
-        <h2>Top 20 Songs:</h2>
+        <h2 className="top-header">Top 20 Songs:</h2>
+        {topSongs ? 
         <Carousel itemsToShow={4}>
-            {topSongs.map(song => <div>{song.title}</div>)}
+            {topSongs.map(song => 
+              <div key={song.id} className="cube-in-carousel">
+                <img src={song.Artist.coverImg} alt={song.title} width='150' height='150' />
+                <br />
+                <Link to={`/song/${song.id}?album=${song.albumId}`}>{song.title}</Link>
+              </div>
+            )}
         </Carousel>
-        <h2>Top 20 Artists:</h2>
+        :
+        <div>no songs found</div>}
+        <h2 className="top-header">Top 20 Artists:</h2>
+        {topArtists ?
         <Carousel itemsToShow={4}>
-            {topArtists.map(artist => <div>{artist.artist_name}</div>)}
+            {topArtists.map(artist => 
+              <div key={artist.id} className="cube-in-carousel">
+                <img src={artist.coverImg} alt={artist.artistName} width='150' height='150' />
+                <br />
+                <Link to={`/artist/${artist.id}`}>{artist.artistName}</Link>
+              </div>
+            )}
         </Carousel>
-        <h2>Top 20 Albums:</h2>
+        :
+        <div>no artists found</div>}
+        <h2 className="top-header">Top 20 Albums:</h2>
+        {topAlbums ? 
         <Carousel itemsToShow={4}>
-            {topAlbums.map(album => <div>{album.album_name}</div>)}
+            {topAlbums.map(album => 
+              <div key={album.id} className="cube-in-carousel">
+                <img src={album.coverImg} alt={album.albumName} width='150' height='150' />
+                <br />
+                <Link to={`/album/${album.id}`}>{album.albumName}</Link>
+              </div>
+            )}
         </Carousel>
-        <h2>Top 20 Playlists:</h2>
+        :
+        <div>no albums found</div>}
+        <h2 className="top-header">Top 20 Playlists:</h2>
+        {topPlaylists ?
         <Carousel itemsToShow={4}>
-            {topPlaylists.map(playlist => <div>{playlist.playlist_name}</div>)}
+            {topPlaylists.map(playlist => 
+              <div key={playlist.id} className="cube-in-carousel">
+                <img src={playlist.coverImg} alt={playlist.playlistName} width='150' height='150' />
+                <br />
+                <Link to={`/playlist/${playlist.id}`}>{playlist.playlistName}</Link>
+              </div>
+            )}
         </Carousel>
+        :
+        <div>no playlists found</div>}
     </div>
   );
 }
