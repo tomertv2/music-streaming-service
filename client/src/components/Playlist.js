@@ -15,8 +15,6 @@ function Playlist() {
     fetchedData();
   }, []);
 
-  console.log(playlist)
-
   return (
     <div>
       {playlist ? (
