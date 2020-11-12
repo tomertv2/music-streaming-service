@@ -1,5 +1,6 @@
 const { Client } = require('@elastic/elasticsearch');
 const { Song, Artist, Album, Playlist } = require('./models');
+require('dotenv').config();
 
 const client = new Client({
   cloud: {
@@ -61,7 +62,7 @@ const moveAlbumsDataFromSqlToElasticsearch = async () => {
   try {
     const allAlbums = await Album.findAll({});
     const body = await allAlbums.flatMap((doc) => [
-      { index: { _index: 'songs' } },
+      { index: { _index: 'albums' } },
       doc,
     ]);
     await client.bulk({ refresh: true, body });
