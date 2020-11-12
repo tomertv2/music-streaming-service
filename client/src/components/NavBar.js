@@ -9,7 +9,7 @@ export default function NavBar() {
 
   React.useEffect(() => {
     console.log('Location changed');
-    track('Page changed', {'location': location});
+    track('Page changed', { location: location });
   }, [location]);
 
   return (
@@ -30,6 +30,9 @@ export default function NavBar() {
         </Link>
         <Link to={'/artist'} className='nav-link'>
           Artist
+        </Link>
+        <Link to={'/search'} className='nav-link'>
+          Search
         </Link>
       </div>
     </div>

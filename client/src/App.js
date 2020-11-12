@@ -8,6 +8,7 @@ import Artist from './components/Artist';
 import NavBar from './components/NavBar';
 import Error404 from './components/Error404';
 import Login from './components/Login';
+import Search from './components/Search';
 import track from './services/AnalyticsManager';
 import './App.css';
 
@@ -27,6 +28,7 @@ function App() {
           <Route path='/Playlist/:id' component={Playlist} />
           <Route path='/artist/:id' component={Artist} />
           <Route path='/login' component={Login} />
+          <Route path='/search' component={Search} />
           <Route component={Error404} />
         </Switch>
       </Router>

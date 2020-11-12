@@ -66,7 +66,7 @@ function Artist() {
                       height='150'
                     />
                     <br />
-                    <Link to={`/song/${song.id}/?artist=${artist.id}`}>
+                    <Link to={`/song/${song.id}?artist=${artist.id}`}>
                       {song.title}
                     </Link>
                   </div>
