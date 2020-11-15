@@ -14,6 +14,7 @@ function SearchAll({ songs, albums, playlists, artists }) {
               </Link>
             </div>
           ))}
+          <div><Link to={'/search/songs'}>Show more...</Link></div>
         </div>
       ) : (
         <h4>No songs to show</h4>
@@ -27,6 +28,7 @@ function SearchAll({ songs, albums, playlists, artists }) {
               <Link to={`/album/${album.id}`}>{album.albumName}</Link>
             </div>
           ))}
+          <div><Link to={'/search/albums'}>Show more...</Link></div>
         </div>
       ) : (
         <h4>No albums to show</h4>
@@ -42,6 +44,7 @@ function SearchAll({ songs, albums, playlists, artists }) {
               </Link>
             </div>
           ))}
+          <div><Link to={'/search/playlists'}>Show more...</Link></div>
         </div>
       ) : (
         <h4>No playlists to show</h4>
@@ -55,6 +58,7 @@ function SearchAll({ songs, albums, playlists, artists }) {
               <Link to={`/artist/${artist.id}`}>{artist.artistName}</Link>
             </div>
           ))}
+          <div><Link to={'/search/artists'}>Show more...</Link></div>
         </div>
       ) : (
         <h4>No artists to show</h4>
