@@ -1,17 +1,19 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import network from '../services/network';
 import SearchNavBar from './SearchNavBar';
-import SearchAll from './SearchAll';
 import SearchSongs from './SearchSongs';
 import SearchAlbums from './SearchAlbums';
 import SearchPlaylists from './SearchPlaylists';
 import SearchArtists from './SearchArtists';
-import Error404 from './Error404';
+import SearchAll from './SearchAll';
 
 function Search() {
   const [searchInput, setSearchInput] = useState('');
-  const [searchResults, setSearchResults] = useState({});
+  const [songsResults, setSongsResults] = useState([]);
+  const [albumsResults, setAlbumsResults] = useState([]);
+  const [playlistsResults, setPlaylistsResults] = useState([]);
+  const [artistsResults, setArtistsResults] = useState([]);
 
   const debounce = useCallback((func, wait) => {
     let timeout;
@@ -28,7 +30,10 @@ function Search() {
   const fetchData = async (input) => {
     const { data: results } = await network.get(`/api/search?q=${input}`);
     console.log(results);
-    setSearchResults(results);
+    setSongsResults(results.songs);
+    setAlbumsResults(results.albums);
+    setPlaylistsResults(results.playlists);
+    setArtistsResults(results.artists);
   };
 
   const handleChangeOfInput = useCallback(debounce(fetchData, 250), []);
@@ -39,23 +44,41 @@ function Search() {
 
   return (
     <div>
-      <Router>
-        <input
-          type='text'
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-          placeholder='type to search...'
-        />
-        <SearchNavBar />
-        <Switch>
-          <Route exact path='/search' component={SearchAll} />
-          <Route path='/search/songs' component={SearchSongs} />
-          <Route path='/search/albums' component={SearchAlbums} />
-          <Route path='/search/playlists' component={SearchPlaylists} />
-          <Route path='/search/artists' component={SearchArtists} />
-          <Route component={Error404} />
-        </Switch>
-      </Router>
+      <input
+        type='text'
+        value={searchInput}
+        onChange={(e) => setSearchInput(e.target.value)}
+        placeholder='type to search...'
+      />
+      <SearchNavBar />
+      <Route
+        exact
+        path='/search'
+        render={() => (
+          <SearchAll
+            songs={songsResults}
+            albums={albumsResults}
+            playlists={playlistsResults}
+            artists={artistsResults}
+          />
+        )}
+      />
+      <Route
+        path='/search/songs'
+        render={() => <SearchSongs input={searchInput} />}
+      />
+      <Route
+        path='/search/albums'
+        render={() => <SearchAlbums input={searchInput} />}
+      />
+      <Route
+        path='/search/playlists'
+        render={() => <SearchPlaylists input={searchInput} />}
+      />
+      <Route
+        path='/search/artists'
+        render={() => <SearchArtists input={searchInput} />}
+      />
     </div>
   );
 }

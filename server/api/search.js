@@ -13,7 +13,7 @@ const client = new Client({
   },
 });
 
-// GET all the search results
+// GET all the 3 search results for every section
 router.get('/', async (req, res) => {
   const searchQuery = req.query.q;
   const searchRegex = `.*${searchQuery}.*`;
@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
       query: {
         match: { title: searchRegex },
       },
-      size: 20,
+      size: 3,
     },
   });
 
@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
       query: {
         match: { albumName: searchRegex },
       },
-      size: 20,
+      size: 3,
     },
   });
 
@@ -44,7 +44,7 @@ router.get('/', async (req, res) => {
       query: {
         match: { playlistName: searchRegex },
       },
-      size: 20,
+      size: 3,
     },
   });
 
@@ -54,7 +54,7 @@ router.get('/', async (req, res) => {
       query: {
         match: { artistName: searchRegex },
       },
-      size: 20,
+      size: 3,
     },
   });
 
