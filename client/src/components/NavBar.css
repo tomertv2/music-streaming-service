@@ -11,6 +11,6 @@
 }
 
 .navbar-container {
-    display: inline-flex;
+    display: flex;
     align-items: space-between;
 }

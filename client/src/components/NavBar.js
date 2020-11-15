@@ -9,28 +9,48 @@ export default function NavBar() {
 
   React.useEffect(() => {
     console.log('Location changed');
-    track('Page changed', {'location': location});
+    track('Page changed', { location: location });
   }, [location]);
 
   return (
     <div className='navbar'>
       <h2 className='navbar-header'>Music Streaming Service</h2>
       <div className='navbar-container'>
-        <Link to={'/'} className='nav-link'>
+        <div className='nav-link'>
+        <Link to={'/'}>
           Home
         </Link>
-        <Link to={'/song'} className='nav-link'>
+        </div>
+        <div className='nav-link'>
+        <Link to={'/song'}>
           Song
         </Link>
-        <Link to={'/album'} className='nav-link'>
+        </div>
+        <div className='nav-link'>
+        <Link to={'/album'}>
           Album
         </Link>
-        <Link to={'/playlist'} className='nav-link'>
+        </div>
+        <div className='nav-link'>
+        <Link to={'/playlist'}>
           Playlist
         </Link>
-        <Link to={'/artist'} className='nav-link'>
+        </div>
+        <div className='nav-link'>
+        <Link to={'/artist'}>
           Artist
         </Link>
+        </div>
+        <div className='nav-link'>
+        <Link to={'/login'}>
+          Login
+        </Link>
+        </div>
+        <div className='nav-link'>
+        <Link to={'/search'}>
+          Search
+        </Link>
+        </div>
       </div>
     </div>
   );

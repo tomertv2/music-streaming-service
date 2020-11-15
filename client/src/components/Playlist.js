@@ -13,7 +13,7 @@ function Playlist() {
       setPlaylist(data);
     };
     fetchedData();
-  }, []);
+  }, [params]);
 
   return (
     <div>
@@ -47,7 +47,7 @@ function Playlist() {
           </div>
         </div>
       ) : (
-        <div>no playlist found</div>
+        <div>No playlist found</div>
       )}
     </div>
   );
