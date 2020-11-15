@@ -13,7 +13,7 @@ function Playlist() {
       setPlaylist(data);
     };
     fetchedData();
-  }, []);
+  }, [params]);
 
   return (
     <div>

@@ -27,7 +27,7 @@ function Song() {
       }
     };
     fetchedData();
-  }, []);
+  }, [playlist, album, artist]);
 
   useEffect(() => {
     const fetchedData = async () => {

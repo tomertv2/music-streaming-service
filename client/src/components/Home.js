@@ -14,12 +14,10 @@ function Home() {
         const fetchedData = async () => {
           const { data: songs } = await network.get('/api/song');
           setTopSongs(songs);
-          console.log(songs)
           const { data: artists } = await network.get('/api/artist');
           setTopArtists(artists);
           const { data: albums } = await network.get('/api/album');
           setTopAlbums(albums);
-          console.log(albums)
           const { data: playlists } = await network.get('/api/playlist');
           setTopPlaylists(playlists);
         };
