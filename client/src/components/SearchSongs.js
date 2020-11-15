@@ -26,7 +26,7 @@ function SearchSongs({ input }) {
         <div>
           Songs:
           {results.map((song) => (
-            <div key={song.id}>
+            <div key={song.id} className='one-result-div'>
               <Link to={`/song/${song.id}?album=${song.albumId}`}>
                 {song.title}
               </Link>
@@ -34,7 +34,10 @@ function SearchSongs({ input }) {
           ))}
         </div>
       ) : (
-        <h4>No songs to show</h4>
+        <div>
+          <h4>No songs found for the keyword '{input}'</h4>
+          <h4>Try something else</h4>
+        </div>
       )}
     </div>
   );

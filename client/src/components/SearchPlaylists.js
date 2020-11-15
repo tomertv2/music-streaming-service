@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import network from '../services/network';
+import { ResultImage, ResultText } from '../styles/Result';
 
 function SearchPlaylists({ input }) {
   const [results, setResults] = useState([]);
@@ -25,15 +26,24 @@ function SearchPlaylists({ input }) {
         <div>
           Playlists:
           {results.map((playlist) => (
-            <div key={playlist.id}>
+            <div key={playlist.id} className='one-result-div'>
+              <ResultImage
+                src={playlist.coverImg}
+                alt={playlist.playlistName}
+                width='50'
+                height='50'
+              ></ResultImage>
               <Link to={`/playlist/${playlist.id}`}>
-                {playlist.playlistName}
+                <ResultText>{playlist.playlistName}</ResultText>
               </Link>
             </div>
           ))}
         </div>
       ) : (
-        <h4>No playlists to show</h4>
+        <div>
+          <h4>No playlists found for the keyword '{input}'</h4>
+          <h4>Try something else</h4>
+        </div>
       )}
     </div>
   );

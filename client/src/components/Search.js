@@ -7,6 +7,7 @@ import SearchAlbums from './SearchAlbums';
 import SearchPlaylists from './SearchPlaylists';
 import SearchArtists from './SearchArtists';
 import SearchAll from './SearchAll';
+import SearchWrapper from '../styles/MainSearch';
 
 function Search() {
   const [searchInput, setSearchInput] = useState('');
@@ -40,20 +41,22 @@ function Search() {
   };
 
   const handleChangeOfInput = useCallback(debounce(fetchData, 250), []);
-  
+
   useEffect(() => {
     handleChangeOfInput(searchInput);
   }, [searchInput]);
 
   return (
-    <div>
+    <SearchWrapper>
+      <h2 className='search-header'>Search</h2>
+      <SearchNavBar />
       <input
         type='text'
+        className='search-input'
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
         placeholder='type to search...'
       />
-      <SearchNavBar />
       <Route
         exact
         path='/search'
@@ -82,7 +85,7 @@ function Search() {
         path='/search/artists'
         render={() => <SearchArtists input={searchInput} />}
       />
-    </div>
+    </SearchWrapper>
   );
 }
 

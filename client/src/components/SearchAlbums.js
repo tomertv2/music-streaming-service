@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import network from '../services/network';
+import { ResultImage, ResultText } from '../styles/Result';
 
 function SearchAlbums({ input }) {
   const [results, setResults] = useState([]);
@@ -27,12 +28,23 @@ function SearchAlbums({ input }) {
           Albums:
           {results.map((album) => (
             <div key={album.id}>
-              <Link to={`/album/${album.id}`}>{album.albumName}</Link>
+              <ResultImage
+                src={album.coverImg}
+                alt={album.albumName}
+                width='50'
+                height='50'
+              ></ResultImage>
+              <Link to={`/album/${album.id}`}>
+                <ResultText>{album.albumName}</ResultText>
+              </Link>
             </div>
           ))}
         </div>
       ) : (
-        <h4>No albums to show</h4>
+        <div>
+          <h4>No albums found for the keyword '{input}'</h4>
+          <h4>Try something else</h4>
+        </div>
       )}
     </div>
   );

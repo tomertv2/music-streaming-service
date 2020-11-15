@@ -16,24 +16,41 @@ export default function NavBar() {
     <div className='navbar'>
       <h2 className='navbar-header'>Music Streaming Service</h2>
       <div className='navbar-container'>
-        <Link to={'/'} className='nav-link'>
+        <div className='nav-link'>
+        <Link to={'/'}>
           Home
         </Link>
-        <Link to={'/song'} className='nav-link'>
+        </div>
+        <div className='nav-link'>
+        <Link to={'/song'}>
           Song
         </Link>
-        <Link to={'/album'} className='nav-link'>
+        </div>
+        <div className='nav-link'>
+        <Link to={'/album'}>
           Album
         </Link>
-        <Link to={'/playlist'} className='nav-link'>
+        </div>
+        <div className='nav-link'>
+        <Link to={'/playlist'}>
           Playlist
         </Link>
-        <Link to={'/artist'} className='nav-link'>
+        </div>
+        <div className='nav-link'>
+        <Link to={'/artist'}>
           Artist
         </Link>
-        <Link to={'/search'} className='nav-link'>
+        </div>
+        <div className='nav-link'>
+        <Link to={'/login'}>
+          Login
+        </Link>
+        </div>
+        <div className='nav-link'>
+        <Link to={'/search'}>
           Search
         </Link>
+        </div>
       </div>
     </div>
   );

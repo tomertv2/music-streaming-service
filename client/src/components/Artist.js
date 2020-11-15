@@ -76,7 +76,7 @@ function Artist() {
           </div>
         </div>
       ) : (
-        <div>no artist found</div>
+        <div>No artist found</div>
       )}
     </div>
   );

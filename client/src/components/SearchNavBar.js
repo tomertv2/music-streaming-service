@@ -5,21 +5,31 @@ function SearchNavBar() {
   return (
     <div className='navbar'>
       <div className='navbar-container'>
-        <Link to={'/search'} className='nav-link'>
+        <div className='nav-link'>
+        <Link to={'/search'}>
           All
         </Link>
-        <Link to={'/search/songs'} className='nav-link'>
+        </div>
+        <div className='nav-link'>
+        <Link to={'/search/songs'}>
           Songs
         </Link>
-        <Link to={'/search/albums'} className='nav-link'>
+        </div>
+        <div className='nav-link'>
+        <Link to={'/search/albums'}>
           Albums
         </Link>
-        <Link to={'/search/playlists'} className='nav-link'>
+        </div>
+        <div className='nav-link'>
+        <Link to={'/search/playlists'}>
           Playlists
         </Link>
-        <Link to={'/search/artists'} className='nav-link'>
+        </div>
+        <div className='nav-link'>
+        <Link to={'/search/artists'}>
           Artists
         </Link>
+        </div>
       </div>
     </div>
   );

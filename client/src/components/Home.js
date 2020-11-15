@@ -38,7 +38,7 @@ function Home() {
             )}
         </Carousel>
         :
-        <div>no songs found</div>}
+        <div>No songs found</div>}
         <h2 className="top-header">Top 20 Artists:</h2>
         {topArtists ?
         <Carousel itemsToShow={4}>
@@ -51,7 +51,7 @@ function Home() {
             )}
         </Carousel>
         :
-        <div>no artists found</div>}
+        <div>No artists found</div>}
         <h2 className="top-header">Top 20 Albums:</h2>
         {topAlbums ? 
         <Carousel itemsToShow={4}>
@@ -64,7 +64,7 @@ function Home() {
             )}
         </Carousel>
         :
-        <div>no albums found</div>}
+        <div>No albums found</div>}
         <h2 className="top-header">Top 20 Playlists:</h2>
         {topPlaylists ?
         <Carousel itemsToShow={4}>
@@ -77,7 +77,7 @@ function Home() {
             )}
         </Carousel>
         :
-        <div>no playlists found</div>}
+        <div>No playlists found</div>}
     </div>
   );
 }

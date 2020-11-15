@@ -47,7 +47,7 @@ function Album() {
           </div>
         </div>
       ) : (
-        <div>no album found</div>
+        <div>No album found</div>
       )}
     </div>
   );

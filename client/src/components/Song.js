@@ -35,7 +35,7 @@ function Song() {
       setSongData(data);
     };
     fetchedData();
-  }, [location]);
+  }, [params]);
 
   return (
     <div>
