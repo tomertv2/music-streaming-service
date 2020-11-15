@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import network from '../services/network';
-import { ResultImage, ResultDiv, ResultText } from '../styles/Result';
+import { ResultImage, ResultText, ResultDiv } from '../styles/Result';
 
 function SearchArtists({ input }) {
   const [results, setResults] = useState([]);
@@ -27,7 +27,7 @@ function SearchArtists({ input }) {
         <div>
           Artists:
           {results.map((artist) => (
-            <div key={artist.id} className='one-result-div'>
+            <ResultDiv key={artist.id}>
               <ResultImage
                 src={artist.coverImg}
                 alt={artist.artistName}
@@ -37,7 +37,7 @@ function SearchArtists({ input }) {
               <Link to={`/artist/${artist.id}`}>
                 <ResultText>{artist.artistName}</ResultText>
               </Link>
-            </div>
+            </ResultDiv>
           ))}
         </div>
       ) : (

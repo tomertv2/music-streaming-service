@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 
 const ResultImage = styled.img`
-    vertical-align: middle;
+  vertical-align: middle;
 `;
 
 const ResultText = styled.span`
-    margin-left: 10px;
+  margin-left: 10px;
 `;
 
-export {ResultImage, ResultText};
+const ResultDiv = styled.div`
+    margin-bottom: 5px;
+    margin-top: 5px;
+`;
+
+export { ResultImage, ResultText, ResultDiv };

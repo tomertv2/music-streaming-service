@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ResultImage, ResultText } from '../styles/Result';
+import { ResultImage, ResultText, ResultDiv } from '../styles/Result';
 
 function SearchAll({ songs, albums, playlists, artists }) {
   return (
@@ -9,11 +9,17 @@ function SearchAll({ songs, albums, playlists, artists }) {
         <div>
           Songs:
           {songs.map((song) => (
-            <div key={song.id}>
+            <ResultDiv key={song.id}>
+              <ResultImage
+                src={song.Album.coverImg}
+                alt={song.title}
+                width='50'
+                height='50'
+              ></ResultImage>
               <Link to={`/song/${song.id}?album=${song.albumId}`}>
-                {song.title}
+                <ResultText>{song.title}</ResultText>
               </Link>
-            </div>
+            </ResultDiv>
           ))}
           <div>
             <Link to={'/search/songs'}>Show more...</Link>
@@ -25,7 +31,7 @@ function SearchAll({ songs, albums, playlists, artists }) {
         <div>
           Albums:
           {albums.map((album) => (
-            <div key={album.id}>
+            <ResultDiv key={album.id}>
               <ResultImage
                 src={album.coverImg}
                 alt={album.albumName}
@@ -35,7 +41,7 @@ function SearchAll({ songs, albums, playlists, artists }) {
               <Link to={`/album/${album.id}`}>
                 <ResultText>{album.albumName}</ResultText>
               </Link>
-            </div>
+            </ResultDiv>
           ))}
           <div>
             <Link to={'/search/albums'}>Show more...</Link>
@@ -47,7 +53,7 @@ function SearchAll({ songs, albums, playlists, artists }) {
         <div>
           Playlists:
           {playlists.map((playlist) => (
-            <div key={playlist.id}>
+            <ResultDiv key={playlist.id}>
               <ResultImage
                 src={playlist.coverImg}
                 alt={playlist.playlistName}
@@ -57,7 +63,7 @@ function SearchAll({ songs, albums, playlists, artists }) {
               <Link to={`/playlist/${playlist.id}`}>
                 <ResultText>{playlist.playlistName}</ResultText>
               </Link>
-            </div>
+            </ResultDiv>
           ))}
           <div>
             <Link to={'/search/playlists'}>Show more...</Link>
@@ -69,7 +75,7 @@ function SearchAll({ songs, albums, playlists, artists }) {
         <div>
           Artists:
           {artists.map((artist) => (
-            <div key={artist.id}>
+            <ResultDiv key={artist.id}>
               <ResultImage
                 src={artist.coverImg}
                 alt={artist.artistName}
@@ -79,7 +85,7 @@ function SearchAll({ songs, albums, playlists, artists }) {
               <Link to={`/artist/${artist.id}`}>
                 <ResultText>{artist.artistName}</ResultText>
               </Link>
-            </div>
+            </ResultDiv>
           ))}
           <div>
             <Link to={'/search/artists'}>Show more...</Link>

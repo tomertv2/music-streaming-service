@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import network from '../services/network';
-import { ResultImage, ResultText } from '../styles/Result';
+import { ResultImage, ResultText, ResultDiv } from '../styles/Result';
 
 function SearchAlbums({ input }) {
   const [results, setResults] = useState([]);
@@ -27,7 +27,7 @@ function SearchAlbums({ input }) {
         <div>
           Albums:
           {results.map((album) => (
-            <div key={album.id}>
+            <ResultDiv key={album.id}>
               <ResultImage
                 src={album.coverImg}
                 alt={album.albumName}
@@ -37,7 +37,7 @@ function SearchAlbums({ input }) {
               <Link to={`/album/${album.id}`}>
                 <ResultText>{album.albumName}</ResultText>
               </Link>
-            </div>
+            </ResultDiv>
           ))}
         </div>
       ) : (

@@ -15,7 +15,18 @@ const client = new Client({
 // Copy all songs from MySQL server to ElasticSearch Cloud
 const moveSongsDataFromSqlToElasticsearch = async () => {
   try {
-    const allSongs = await Song.findAll({});
+    const allSongs = await Song.findAll({
+      include: [
+        {
+          model: Artist,
+          attributes: ['artistName'],
+        },
+        {
+          model: Album,
+          attributes: ['albumName', 'coverImg'],
+        },
+      ],
+    });
     const body = await allSongs.flatMap((doc) => [
       { index: { _index: 'songs' } },
       doc,

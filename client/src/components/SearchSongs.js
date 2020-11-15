@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import network from '../services/network';
+import { ResultImage, ResultText, ResultDiv } from '../styles/Result';
 
 function SearchSongs({ input }) {
   const [results, setResults] = useState([]);
@@ -26,11 +27,17 @@ function SearchSongs({ input }) {
         <div>
           Songs:
           {results.map((song) => (
-            <div key={song.id} className='one-result-div'>
+            <ResultDiv key={song.id}>
+              <ResultImage
+                src={song.Album.coverImg}
+                alt={song.title}
+                width='50'
+                height='50'
+              ></ResultImage>
               <Link to={`/song/${song.id}?album=${song.albumId}`}>
-                {song.title}
+                <ResultText>{song.title}</ResultText>
               </Link>
-            </div>
+            </ResultDiv>
           ))}
         </div>
       ) : (
