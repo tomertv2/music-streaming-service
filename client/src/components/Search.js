@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, useHistory } from 'react-router-dom';
 import network from '../services/network';
 import SearchNavBar from './SearchNavBar';
 import SearchSongs from './SearchSongs';
@@ -14,6 +14,8 @@ function Search() {
   const [albumsResults, setAlbumsResults] = useState([]);
   const [playlistsResults, setPlaylistsResults] = useState([]);
   const [artistsResults, setArtistsResults] = useState([]);
+
+  const history = useHistory();
 
   const debounce = useCallback((func, wait) => {
     let timeout;
@@ -34,10 +36,11 @@ function Search() {
     setAlbumsResults(results.albums);
     setPlaylistsResults(results.playlists);
     setArtistsResults(results.artists);
+    history.push('/search');
   };
 
   const handleChangeOfInput = useCallback(debounce(fetchData, 250), []);
-
+  
   useEffect(() => {
     handleChangeOfInput(searchInput);
   }, [searchInput]);

@@ -6,6 +6,7 @@ function SearchArtists({ input }) {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
+    let isMounted = true;
     const fetchData = async () => {
       const { data: results } = await network.get(
         `/api/search/artists-results?q=${input}`
@@ -14,6 +15,9 @@ function SearchArtists({ input }) {
       setResults(results);
     };
     fetchData();
+    return () => {
+      isMounted = false;
+    };
   }, [input]);
 
   return (
